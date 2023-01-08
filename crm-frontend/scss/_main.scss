@@ -1,0 +1,148 @@
+@import "fonts";
+@import "global";
+@import "vars";
+
+.main {
+  padding: 40px 0 252px 0;
+  background-color: #e5e5e5;
+
+  @media (max-width: 630px) {
+    overflow-x: auto;
+  }
+
+  &__conatiner {
+    @media (max-width: 630px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__title {
+    margin: 0 0 25px 0;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 33px;
+    color: $textPrimary;
+  }
+
+  &__table {
+    margin-bottom: 40px;
+
+    @media (max-width: 630px) {
+      width: 600px;
+    }
+  }
+
+  &__thead__th-1,
+  &__thead__th-2,
+  &__thead__th-3,
+  &__thead__th-4,
+  &__thead__th-5,
+  &__thead__th-6 {
+    border-bottom: none;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: $textGrey;
+  }
+
+  &__table__id {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: $firmPrimary;
+  }
+
+  &__tbody__tr {
+    height: 60px;
+    background-color: #fff;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(200, 197, 209, 0.5);
+    align-items: center;
+  }
+
+  &__tbody__th-1 {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: $textGrey;
+  }
+
+  &__tbody__th-2,
+  &__tbody__th-3,
+  &__tbody__th-4,
+  &__tbody__th-6 {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: $textPrimary;
+    vertical-align: top;
+  }
+
+  &__table__span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: $textGrey;
+  }
+
+  &__table__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 120px;
+  }
+
+  &__table__item {
+    &:not(:last-child) {
+      margin-right: 7px;
+    }
+  }
+
+  &__table__change {
+    margin-right: 30px;
+  }
+
+  &__table__change:hover &__change__span {
+    color: $firmPrimary;
+  }
+
+  &__table__delete:hover &__delete__span {
+    color: #F06A4D;
+  }
+
+  &__change__span {
+    transition: all .2s ease-in-out;
+  }
+
+  &__delete__span {
+    transition: all .2s ease-in-out;
+  }
+
+  &__client__btn {
+    margin: 0 auto;
+    padding: 12.5px 26px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #9873FF;
+
+    @media (max-width: 500px) {
+      position: fixed;
+      margin-left: 30%;
+    }
+
+    @media (max-width: 400px) {
+      margin-left: 15%;
+    }
+  }
+
+  &__client__span {
+    margin-left: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    color: $firmPrimary;
+  }
+}
+
