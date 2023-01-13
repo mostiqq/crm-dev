@@ -163,6 +163,15 @@ const deleteBtnAccept = document.querySelector('.delete__btn');
 const deleteClose = document.querySelector('.delete__close');
 const deleteCancel = document.querySelector('.delete__cancel');
 const changeCancelBtn = document.querySelector('.change__cancel-btn')
+const headerInput = document.querySelector('.header__input');
+const mainTheadID = document.querySelector('.main__thead__th-1');
+const mainTheadFIO = document.querySelector('.main__thead__th-2');
+const mainTheadCreate = document.querySelector('.main__thead__th-3');
+const mainTheadChange = document.querySelector('.main__thead__th-4');
+
+
+let sortFlag = 'id'
+let sortDir = true
 
 async function getData() {
   const response = await fetch('http://localhost:3000/api/clients')
@@ -170,8 +179,29 @@ async function getData() {
   return data
 }
 
-async function createRow() {
-  const data = await getData()
+async function createRow(searchParam) {
+  let data;
+  if (searchParam != '') {
+    const getSearch = await fetch(`http://localhost:3000/api/clients?search=${searchParam}`)
+    data = await getSearch.json()
+  } else if (searchParam == '') {
+    data = await getData()
+  }
+
+  data = data.sort(function(a, b) {
+    if (sortFlag == 'fio') {
+      let fioA = a.name + a.name + a.lastName
+      let fioB = b.name + b.name + b.lastName
+      let sort = fioA < fioB
+      if (sortDir == false) sort = fioA > fioB
+      if (sort) return -1
+    } else {
+      let sort = a[sortFlag] < b[sortFlag]
+      if (sortDir == false) sort = a[sortFlag] > b[sortFlag]
+      if (sort) return -1
+    }
+  })
+
   mainTbody.innerHTML = ''
   for (const onePerson of data) {
     const mainTbodyTr = document.createElement('tr')
@@ -717,7 +747,7 @@ async function createRow() {
             location.reload();
           }, 100);
 
-          await createRow()
+          await createRow('')
 
           changeInputName.value = ''
           changeInputSurname.value = ''
@@ -1037,7 +1067,7 @@ addSaveBtn.addEventListener('click', async function() {
       }
     })
 
-    await createRow();
+    await createRow('');
 
     if (document.querySelector('[data-add-1]').classList.contains('d-none') === false) {
       document.querySelector('[data-add-1]').classList.add('d-none')
@@ -1160,7 +1190,7 @@ addCloseBtn.addEventListener('click', () => {
 })
 
 window.addEventListener('DOMContentLoaded', async () => {
-  await createRow()
+  await createRow('')
 })
 
 function deletePerson(id) {
@@ -1179,12 +1209,49 @@ function deletePerson(id) {
       method: 'DELETE'
     })
 
-    await createRow()
+    await createRow('')
     deleteModal.classList.add('d-none')
   })
 }
 
 
+let inputWithDelay = null;
+
+headerInput.addEventListener('input', function () {
+  clearInterval(inputWithDelay);
+  inputWithDelay = setTimeout(async function () {
+    await createRow(headerInput.value.trim())
+  }, 300);
+});
+
+
+mainTheadID.addEventListener('click', async function () {
+  sortFlag = 'id'
+  sortDir = !sortDir
+  document.querySelector('.main__table__id').classList.toggle('arrow-top')
+  await createRow('')
+})
+
+mainTheadFIO.addEventListener('click', async function () {
+  sortFlag = 'fio'
+  sortDir = !sortDir
+  document.querySelector('.main__table__fio').classList.toggle('fio-top')
+  await createRow('')
+})
+
+mainTheadCreate.addEventListener('click', async function () {
+  sortFlag = 'createdAt'
+  sortDir = !sortDir
+  document.querySelector('.main__table__create').classList.toggle('arrow-top')
+  await createRow('')
+})
+
+mainTheadChange.addEventListener('click', async function () {
+  sortFlag = 'updatedAt'
+  sortDir = !sortDir
+  document.querySelector('.main__table__update').classList.toggle('arrow-top')
+  await createRow('')
+})
 
 
 

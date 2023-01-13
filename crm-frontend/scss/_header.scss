@@ -17,6 +17,11 @@
 
   &__img {
     margin-right: 53px;
+
+    @media (max-width: 630px) {
+      margin-right: 0;
+      align-self: center;
+    }
   }
 
   &__form {

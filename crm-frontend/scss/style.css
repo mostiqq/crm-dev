@@ -689,6 +689,12 @@ body {
 .header__img {
   margin-right: 53px;
 }
+@media (max-width: 630px) {
+  .header__img {
+    margin-right: 0;
+    align-self: center;
+  }
+}
 .header__form {
   display: flex;
   align-items: center;
@@ -906,7 +912,7 @@ body {
   padding: 40px 0 252px 0;
   background-color: #e5e5e5;
 }
-@media (max-width: 630px) {
+@media (max-width: 950px) {
   .main {
     overflow-x: auto;
   }
@@ -928,10 +934,34 @@ body {
 .main__table {
   margin-bottom: 40px;
 }
-@media (max-width: 630px) {
+@media (max-width: 950px) {
   .main__table {
-    width: 600px;
+    width: 1100px;
   }
+}
+.main__table__id {
+  background-image: url("../assets/img/arrow-bottom.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding-right: 15px;
+}
+.main__table__fio {
+  background-image: url("../assets/img/fio-bottom.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding-right: 30px;
+}
+.main__table__create {
+  background-image: url("../assets/img/arrow-bottom.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding-right: 15px;
+}
+.main__table__update {
+  background-image: url("../assets/img/arrow-bottom.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding-right: 15px;
 }
 .main__thead__th-1, .main__thead__th-2, .main__thead__th-3, .main__thead__th-4, .main__thead__th-5, .main__thead__th-6 {
   border-bottom: none;
@@ -939,6 +969,11 @@ body {
   font-size: 12px;
   line-height: 16px;
   color: #B0B0B0;
+  cursor: pointer;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .main__table__id {
   font-weight: 400;
@@ -981,6 +1016,16 @@ body {
 .main__table__item:not(:last-child) {
   margin-right: 7px;
 }
+@media (max-width: 1040px) {
+  .main__table__item:not(:last-child) {
+    margin-right: 4px;
+  }
+}
+@media (max-width: 950px) {
+  .main__table__item:not(:last-child) {
+    margin-right: 7px;
+  }
+}
 .main__table__change {
   margin-right: 30px;
 }
@@ -1020,6 +1065,14 @@ body {
   font-size: 14px;
   line-height: 19px;
   color: #9873FF;
+}
+
+.arrow-top {
+  background-image: url("../assets/img/arrow-top.svg");
+}
+
+.fio-top {
+  background-image: url("../assets/img/fio-top.svg");
 }
 
 .add {
