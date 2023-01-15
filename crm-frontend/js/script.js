@@ -407,6 +407,56 @@ async function createRow(searchParam) {
         }
       }
 
+      if (number1 === true && document.querySelector('[data-change-1]').classList.contains('d-none') && changeContactInput1.value !== '-') {
+        document.querySelector('[data-change-1]').classList.remove('d-none')
+        number1 = false
+      }
+      if (number2 === true && document.querySelector('[data-change-2]').classList.contains('d-none') && changeContactInput2.value !== '-') {
+        document.querySelector('[data-change-2]').classList.remove('d-none')
+        countContactClick++
+        number2 = false
+      }
+      if (number3 === true && document.querySelector('[data-change-3]').classList.contains('d-none') && changeContactInput3.value !== '-') {
+        document.querySelector('[data-change-3]').classList.remove('d-none')
+        countContactClick++
+        number3 = false
+      }
+      if (number4 === true && document.querySelector('[data-change-4]').classList.contains('d-none') && changeContactInput4.value !== '-') {
+        document.querySelector('[data-change-4]').classList.remove('d-none')
+        countContactClick++
+        number4 = false
+      }
+      if (number5 === true && document.querySelector('[data-change-5]').classList.contains('d-none') && changeContactInput5.value !== '-') {
+        document.querySelector('[data-change-5]').classList.remove('d-none')
+        countContactClick++
+        number5 = false
+      }
+      if (number6 === true && document.querySelector('[data-change-6]').classList.contains('d-none') && changeContactInput6.value !== '-') {
+        document.querySelector('[data-change-6]').classList.remove('d-none')
+        countContactClick++
+        number6 = false
+      }
+      if (number7 === true && document.querySelector('[data-change-7]').classList.contains('d-none') && changeContactInput7.value !== '-') {
+        document.querySelector('[data-change-7]').classList.remove('d-none')
+        countContactClick++
+        number7 = false
+      }
+      if (number8 === true && document.querySelector('[data-change-8]').classList.contains('d-none') && changeContactInput8.value !== '-') {
+        document.querySelector('[data-change-8]').classList.remove('d-none')
+        countContactClick++
+        number8 = false
+      }
+      if (number9 === true && document.querySelector('[data-change-9]').classList.contains('d-none') && changeContactInput9.value !== '-') {
+        document.querySelector('[data-change-9]').classList.remove('d-none')
+        countContactClick++
+        number9 = false
+      }
+      if (number10 === true && document.querySelector('[data-change-10]').classList.contains('d-none') && changeContactInput10.value !== '-') {
+        document.querySelector('[data-change-10]').classList.remove('d-none')
+        countContactClick++
+        number10 = false
+      }
+
       changeContactBtn.addEventListener('click', () => {
         countContactClick++
         if (number1 === true && document.querySelector('[data-change-1]').classList.contains('d-none') && changeContactInput1.value !== '-') {
@@ -641,7 +691,7 @@ async function createRow(searchParam) {
           if (changeContactInput1.value.trim() !== '') {
             changeContactInputValue1 = changeContactInput1.value.trim()
           } else {
-            changeContactInputValue1 = '-'
+            // changeContactInputValue1 = '-'
           }
           if (changeContactInput2.value.trim() !== '') {
             changeContactInputValue2 = changeContactInput2.value.trim()
@@ -742,13 +792,9 @@ async function createRow(searchParam) {
               'Content-Type': 'application/json'
             }
           })
-
           setTimeout(function(){
-            location.reload();
-          }, 100);
-
+            location.reload();}, 100);
           await createRow('')
-
           changeInputName.value = ''
           changeInputSurname.value = ''
           changeInputLastName.value = ''
@@ -782,43 +828,33 @@ async function createRow(searchParam) {
           if (changeContactInput10.value !== inputValue10 && number10 === false) {
             document.querySelector('[data-change-10]').classList.add('d-none')
           }
-
           if (document.querySelector('[data-change-1]').classList.contains('d-none') === false) {
             document.querySelector('[data-change-1]').classList.add('d-none')
           }
-
           if (document.querySelector('[data-change-2]').classList.contains('d-none') === false) {
             document.querySelector('[data-change-2]').classList.add('d-none')
           }
-
           if (document.querySelector('[data-change-3]').classList.contains('d-none') === false) {
             document.querySelector('[data-change-3]').classList.add('d-none')
           }
-
           if (document.querySelector('[data-change-4]').classList.contains('d-none') === false) {
             document.querySelector('[data-change-4]').classList.add('d-none')
           }
-
           if (document.querySelector('[data-change-5]').classList.contains('d-none') === false) {
             document.querySelector('[data-change-5]').classList.add('d-none')
           }
-
           if (document.querySelector('[data-change-6]').classList.contains('d-none') === false) {
             document.querySelector('[data-change-6]').classList.add('d-none')
           }
-
           if (document.querySelector('[data-change-7]').classList.contains('d-none') === false) {
             document.querySelector('[data-change-7]').classList.add('d-none')
           }
-
           if (document.querySelector('[data-change-8]').classList.contains('d-none') === false) {
             document.querySelector('[data-change-8]').classList.add('d-none')
           }
-
           if (document.querySelector('[data-change-9]').classList.contains('d-none') === false) {
             document.querySelector('[data-change-9]').classList.add('d-none')
           }
-
           if (document.querySelector('[data-change-10]').classList.contains('d-none') === false) {
             document.querySelector('[data-change-10]').classList.add('d-none')
           }
@@ -1067,6 +1103,7 @@ addSaveBtn.addEventListener('click', async function() {
       }
     })
 
+    const dataResponse = await response.json()
     await createRow('');
 
     if (document.querySelector('[data-add-1]').classList.contains('d-none') === false) {
@@ -1123,9 +1160,10 @@ addSaveBtn.addEventListener('click', async function() {
     addContactInput9.value = ''
     addContactInput10.value = ''
     addModal.classList.add('d-none')
-    return await response.json()
-
     addModal.classList.add('d-none')
+  } else if (addInputSurname.value.trim() === '' || addInputSurname.value.trim() === '') {
+    document.querySelector('.add__invalid').classList.remove('d-none')
+    document.querySelector('.add__invalid').textContent = 'Заполните поля имени и фамилии'
   }
 })
 
@@ -1187,6 +1225,7 @@ addCloseBtn.addEventListener('click', () => {
   }
 
   addContactBtn.classList.remove('d-none')
+  document.querySelector('.add__invalid').classList.add('d-none')
 })
 
 window.addEventListener('DOMContentLoaded', async () => {
